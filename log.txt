@@ -108,7 +108,7 @@ Error at line:25 Invalid Suffix on numeric constant or invalid prefix on identif
 Line no 25: TOKEN <SEMICOLON> Lexeme ; found
 Line no 26: TOKEN <STRING> Lexeme "this is \t me" found
 Line no 26: TOKEN <SEMICOLON> Lexeme ; found
-Line no 27: TOKEN <STRING> Lexeme "I love \b Bangladesh" found
+Line no 27: TOKEN <STRING> Lexeme "I love Bangladesh" found
 Line no 27: TOKEN <SEMICOLON> Lexeme ; found
 Line no 30: TOKEN <STRING> Lexeme "one more \
     night \
@@ -124,5 +124,7 @@ Error at line:44 Unrecognized character like '
 Error at line:44 Unrecognized character like \
 Error at line:44 Unfinished character such as '
 Error at line:45 Invalid Suffix on numeric constant or invalid prefix on identifier 9acd
-Line no 46: TOKEN <RCURL> Lexeme } found
-total error number:14
+Error at line:46 Unfinished string
+Error at line:49 Unfinished string
+Error at line:50 Unfinished comment
+total error number:17

@@ -24,7 +24,7 @@ void add(float a)
     char n='\"'
     char 9asd;
     "this is \t me";
-    "I love \b Bangladesh";
+    "I love Bangladesh";
     "one more \
     night \
     by maroon5";
@@ -43,4 +43,11 @@ void add(float a)
     'mm'
     '\'
     9acd
+    "asda asfd efr \
+    asdaasd \
+    asdasds
+    "asdd asdw 
+    /*this is
+    an unfinished
+    comment
 }

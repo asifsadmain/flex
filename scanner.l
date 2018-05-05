@@ -1,4 +1,5 @@
 %option noyywrap
+%x COMMENT
 
 %{
 #include<stdio.h>
@@ -295,7 +296,6 @@ TOODECIMAL {DIGIT}\.{DIGIT}(\.{DIGIT}*)+
 			}
 
 
-
 {STRING}	{	
 				j=0;
 				for(i=1;i<strlen(yytext)-1;i++)
@@ -355,6 +355,26 @@ TOODECIMAL {DIGIT}\.{DIGIT}(\.{DIGIT}*)+
 					j--;
 				}
 				//insert in symbol table and print symbol table content(only non empty buckets)
+			}
+
+\"[ !#-~]* {
+				error_count++;
+				fprintf(logout,"Error at line:%d Unfinished string\n",line_count);
+			}
+
+\"([ !#-~]*\\{NEWLINE})+[ !#-~]* {
+				error_count++;
+				fprintf(logout,"Error at line:%d Unfinished string\n",line_count);
+				for(i=0;i<strlen(yytext);i++)
+				{
+					if(yytext[i]=='\n')
+						line_count++;
+				}
+			}
+
+\/\*[^(\*\/)]* {
+				error_count++;
+				fprintf(logout,"Error at line:%d Unfinished comment\n",line_count);
 			}
 
 {SCOMMENT}	{
