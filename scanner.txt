@@ -1,0 +1,43 @@
+if else + 123 
+for(int i=0;i<10;i++)
+{
+    char count--;
+}
+void add(float a)
+{
+    int a=3,b=5,c;
+    switch(a)
+    {
+        case 1:
+            default continue;
+    }
+    c = a*b/a%c;
+    float d;
+    d=2.0.34;
+    d=4.45E;
+    d=5.67E12;
+    d=.00E-34;
+    d=.10E3.4;
+    char a = 'a';
+    char b='\n';
+    char c='\t'
+    char n='\"'
+    char 9asd;
+    "this is \t me";
+    "I love \b Bangladesh";
+    "one more \
+    night \
+    by maroon5";
+    //this is a comment;
+    //this is \
+    another \
+    comment
+    /*this
+    is 
+    multiline comment
+    in
+    the offline*/
+    "I am \t asif"
+    int 9zxt;
+    1.2.3.4;
+}
