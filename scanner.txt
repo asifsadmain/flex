@@ -14,7 +14,7 @@ void add(float a)
     c = a*b/a%c;
     float d;
     d=2.0.34;
-    d=4.45E;
+    d=4.45E4.4;
     d=5.67E12;
     d=.00E-34;
     d=.10E3.4;
@@ -38,6 +38,9 @@ void add(float a)
     in
     the offline*/
     "I am \t asif"
-    int 9zxt;
     1.2.3.4;
+    2E3.4;
+    'mm'
+    '\'
+    9acd
 }

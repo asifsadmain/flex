@@ -20,7 +20,8 @@ ID [A-Za-z_][A-Za-z0-9_]*
 DIGIT [0-9]
 NEWLINE \n
 FLOAT ([0-9]*\.?[0-9]+|[0-9]+\.)(E-?[0-9]+)?
-CHAR \'([^'\\]|\\['"?\\abfnrtv]|\\[0-7]{1,3}|\\[Xx][0-9a-fA-F]+|{UCN})+\'
+CHARFORM ([^'\\]|\\['"?\\abfnrtv]|\\[0-7]{1,3}|\\[Xx][0-9a-fA-F]+|{UCN})+
+CHAR \'{CHARFORM}\'
 STRING \"(.*\\{NEWLINE})*.*\"
 SCOMMENT \/\/(.*\\{NEWLINE})*.*
 MCOMMENT \/\*(.*{NEWLINE})*.*\*\/
@@ -224,6 +225,11 @@ TOODECIMAL {DIGIT}\.{DIGIT}(\.{DIGIT}*)+
 			fprintf(logout,"Line no %d: TOKEN <ID> Lexeme %s found\n",line_count,yytext);
 			//insert in symbol table and print symbol table content(only non empty buckets)
 		}
+
+{DIGIT}+[A-Za-z0-9_]+ {
+				error_count++;
+				fprintf(logout,"Error at line:%d Invalid Suffix on numeric constant or invalid prefix on identifier %s\n",line_count,yytext);
+			}
 		
 {DIGIT}+ 	{
 				fprintf(tokenout,"<CONST_INT,%s>",yytext);
@@ -231,17 +237,28 @@ TOODECIMAL {DIGIT}\.{DIGIT}(\.{DIGIT}*)+
 				//insert in symbol table and print symbol table content(only non empty buckets)
 			}
 
-{TOODECIMAL}
-			{
+{TOODECIMAL} {
 				error_count++;
-				fprintf(logout,"error number:%d",error_count);
+				fprintf(logout,"Error at line:%d Too many decimal point error for character sequence like %s\n",line_count,yytext);
 			}
 
-{DIGIT}[A-Za-z0-9]+
-			{
+
+([0-9]*\.?[0-9]+|[0-9]+\.)(E-?[0-9]+\.[0-9]+) {
 				error_count++;
-				fprintf(logout,"error number:%d",error_count);
+				fprintf(logout,"Error at line:%d Ill formed number such as %s\n",line_count,yytext);
 			}
+
+\'{CHARFORM}{CHARFORM}+\' {
+				error_count++;
+				fprintf(logout,"Error at line:%d Multi character constant error for character sequence like %s\n",line_count,yytext);
+			}
+
+\'[A-Za-z0-9]*$ {
+				error_count++;
+				fprintf(logout,"Error at line:%d Unfinished character such as %s\n",line_count,yytext);
+			}
+
+{WHITESPACE}
 
 {FLOAT}		{
 				fprintf(tokenout,"<CONST_FLOAT,%s>",yytext);
@@ -276,6 +293,8 @@ TOODECIMAL {DIGIT}\.{DIGIT}(\.{DIGIT}*)+
 				c[0]=0;
 				//insert in symbol table and print symbol table content(only non empty buckets)
 			}
+
+
 
 {STRING}	{	
 				j=0;
@@ -356,6 +375,10 @@ TOODECIMAL {DIGIT}\.{DIGIT}(\.{DIGIT}*)+
 				}
 			}
 
+.			{
+				error_count++;
+				fprintf(logout,"Error at line:%d Unrecognized character like %s\n",line_count,yytext);
+			}
 
 
 %%

@@ -1,7 +1,7 @@
 Line no 1: TOKEN <IF> Lexeme if found
 Line no 1: TOKEN <ELSE> Lexeme else found
 Line no 1: TOKEN <ADDOP> Lexeme + found
-Line no 1: TOKEN <CONST_INT> Lexeme 123 found
+Error at line:1 Invalid Suffix on numeric constant or invalid prefix on identifier 123
 Line no 2: TOKEN <FOR> Lexeme for found
 Line no 2: TOKEN <LPAREN> Lexeme ( found
 Line no 2: TOKEN <INT> Lexeme int found
@@ -11,7 +11,7 @@ Line no 2: TOKEN <CONST_INT> Lexeme 0 found
 Line no 2: TOKEN <SEMICOLON> Lexeme ; found
 Line no 2: TOKEN <ID> Lexeme i found
 Line no 2: TOKEN <RELOP> Lexeme < found
-Line no 2: TOKEN <CONST_INT> Lexeme 10 found
+Error at line:2 Invalid Suffix on numeric constant or invalid prefix on identifier 10
 Line no 2: TOKEN <SEMICOLON> Lexeme ; found
 Line no 2: TOKEN <ID> Lexeme i found
 Line no 2: TOKEN <INCOP> Lexeme ++ found
@@ -47,6 +47,7 @@ Line no 9: TOKEN <RPAREN> Lexeme ) found
 Line no 10: TOKEN <LCURL> Lexeme { found
 Line no 11: TOKEN <CASE> Lexeme case found
 Line no 11: TOKEN <CONST_INT> Lexeme 1 found
+Error at line:11 Unrecognized character like :
 Line no 12: TOKEN <DEFAULT> Lexeme default found
 Line no 12: TOKEN <CONTINUE> Lexeme continue found
 Line no 12: TOKEN <SEMICOLON> Lexeme ; found
@@ -66,11 +67,11 @@ Line no 15: TOKEN <ID> Lexeme d found
 Line no 15: TOKEN <SEMICOLON> Lexeme ; found
 Line no 16: TOKEN <ID> Lexeme d found
 Line no 16: TOKEN <ASSIGNOP> Lexeme = found
+Error at line:16 Too many decimal point error for character sequence like 2.0.34
 Line no 16: TOKEN <SEMICOLON> Lexeme ; found
 Line no 17: TOKEN <ID> Lexeme d found
 Line no 17: TOKEN <ASSIGNOP> Lexeme = found
-Line no 17: TOKEN <CONST_FLOAT> Lexeme 4.45 found
-Line no 17: TOKEN <ID> Lexeme E found
+Error at line:17 Ill formed number such as 4.45E4.4
 Line no 17: TOKEN <SEMICOLON> Lexeme ; found
 Line no 18: TOKEN <ID> Lexeme d found
 Line no 18: TOKEN <ASSIGNOP> Lexeme = found
@@ -82,8 +83,7 @@ Line no 19: TOKEN <CONST_FLOAT> Lexeme .00E-34 found
 Line no 19: TOKEN <SEMICOLON> Lexeme ; found
 Line no 20: TOKEN <ID> Lexeme d found
 Line no 20: TOKEN <ASSIGNOP> Lexeme = found
-Line no 20: TOKEN <CONST_FLOAT> Lexeme .10E3 found
-Line no 20: TOKEN <CONST_FLOAT> Lexeme .4 found
+Error at line:20 Ill formed number such as .10E3.4
 Line no 20: TOKEN <SEMICOLON> Lexeme ; found
 Line no 21: TOKEN <CHAR> Lexeme char found
 Line no 21: TOKEN <ID> Lexeme a found
@@ -104,6 +104,7 @@ Line no 24: TOKEN <ID> Lexeme n found
 Line no 24: TOKEN <ASSIGNOP> Lexeme = found
 Line no 24: TOKEN <CONST_CHAR> Lexeme '\"' found
 Line no 25: TOKEN <CHAR> Lexeme char found
+Error at line:25 Invalid Suffix on numeric constant or invalid prefix on identifier 9asd
 Line no 25: TOKEN <SEMICOLON> Lexeme ; found
 Line no 26: TOKEN <STRING> Lexeme "this is \t me" found
 Line no 26: TOKEN <SEMICOLON> Lexeme ; found
@@ -114,8 +115,14 @@ Line no 30: TOKEN <STRING> Lexeme "one more \
     by maroon5" found
 Line no 30: TOKEN <SEMICOLON> Lexeme ; found
 Line no 40: TOKEN <STRING> Lexeme "I am \t asif" found
-Line no 41: TOKEN <INT> Lexeme int found
+Error at line:41 Too many decimal point error for character sequence like 1.2.3.4
 Line no 41: TOKEN <SEMICOLON> Lexeme ; found
+Error at line:42 Ill formed number such as 2E3.4
 Line no 42: TOKEN <SEMICOLON> Lexeme ; found
-Line no 43: TOKEN <RCURL> Lexeme } found
-total error number:0
+Error at line:43 Multi character constant error for character sequence like 'mm'
+Error at line:44 Unrecognized character like '
+Error at line:44 Unrecognized character like \
+Error at line:44 Unfinished character such as '
+Error at line:45 Invalid Suffix on numeric constant or invalid prefix on identifier 9acd
+Line no 46: TOKEN <RCURL> Lexeme } found
+total error number:14
